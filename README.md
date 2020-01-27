@@ -1,5 +1,7 @@
 # kotlin-spring
 
+This template already have a lot [features and demos](#features).
+
 ## Run
 
 ```bash
@@ -99,5 +101,5 @@ docker run -p 8080:8080 <environment> kotlin-spring
   - [x] detekt include most of features of ktlint, idea also provides good lint.
 - [x] exception, http status, handler
 - [ ] contract testing with wiremock
-- [ ] model mapping
-- [ ] split api test
+- [x] model mapping
+- [x] split api test

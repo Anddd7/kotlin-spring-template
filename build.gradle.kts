@@ -114,7 +114,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
   testImplementation("com.ninja-squad:springmockk:1.1.3")
 
-/* security */
+  /* security */
   implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("io.jsonwebtoken:jjwt:0.9.1")
   testImplementation("org.springframework.security:spring-security-test")
@@ -132,7 +132,7 @@ dependencies {
   implementation("io.springfox:springfox-swagger2:2.9.2")
   runtimeOnly("io.springfox:springfox-swagger-ui:2.9.2")
 
-/* db */
+  /* db */
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   // different with flyway-plugin, inject this and open spring auto-migration by flyway
   runtimeOnly("org.flywaydb:flyway-core")
