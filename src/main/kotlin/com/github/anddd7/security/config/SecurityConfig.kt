@@ -1,6 +1,8 @@
-package com.github.anddd7.security
+package com.github.anddd7.security.config
 
 import com.github.anddd7.core.service.EnvironmentProvider
+import com.github.anddd7.security.filter.JWTAuthenticationFilter
+import com.github.anddd7.security.filter.JWTAuthorizationFilter
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean

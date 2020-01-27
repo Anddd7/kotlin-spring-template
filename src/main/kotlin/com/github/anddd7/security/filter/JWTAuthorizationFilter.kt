@@ -1,7 +1,8 @@
-package com.github.anddd7.security
+package com.github.anddd7.security.filter
 
 import com.github.anddd7.core.configuration.JsonUtil
 import com.github.anddd7.security.api.dto.AuthorizedUser
+import com.github.anddd7.security.config.JWTConfig
 import io.jsonwebtoken.Jwts
 import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.AuthenticationManager

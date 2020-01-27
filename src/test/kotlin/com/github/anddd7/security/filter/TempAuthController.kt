@@ -1,4 +1,4 @@
-package com.github.anddd7.security
+package com.github.anddd7.security.filter
 
 import com.github.anddd7.security.api.dto.AuthorizedUser
 import com.github.anddd7.security.model.AuthUserPrincipal

@@ -1,5 +1,6 @@
 package com.github.anddd7.security.api.dto
 
+import com.github.anddd7.security.model.AuthPermission
 import com.github.anddd7.security.model.AuthUserPrincipal
 
 data class AuthorizedUser(
@@ -11,5 +12,5 @@ data class AuthorizedUser(
 fun AuthUserPrincipal.toAuthenticatedUser() = AuthorizedUser(
     username,
     getRole()?.name,
-    authorities.map { it.code }
+    authorities.map(AuthPermission::code)
 )

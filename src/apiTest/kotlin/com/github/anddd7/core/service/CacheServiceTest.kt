@@ -1,6 +1,5 @@
-package com.github.anddd7.core
+package com.github.anddd7.core.service
 
-import com.github.anddd7.core.service.CacheableService
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -10,13 +9,13 @@ import org.springframework.cache.CacheManager
 
 @SpringBootTest
 @AutoConfigureEmbeddedDatabase
-internal class CacheableServiceTest {
+internal class CacheServiceTest {
 
   @Autowired
   private lateinit var cacheManager: CacheManager
 
   @Autowired
-  private lateinit var cacheableService: CacheableService
+  private lateinit var cacheService: CacheService
 
   @Test
   fun `should have existing cache `() {
@@ -28,12 +27,12 @@ internal class CacheableServiceTest {
     val cache = cacheManager.getCache("simply-cache")!!
     assertThat(cache.get("key")).isNull()
 
-    val realValue = cacheableService.getValue("key")
-    val cachedValue = cacheableService.getValue("key")
+    val realValue = cacheService.getValue("key")
+    val cachedValue = cacheService.getValue("key")
 
     assertThat(realValue).isEqualTo(cachedValue)
     assertThat(realValue).isEqualTo(cache.get("key")?.get())
 
-    assertThat(realValue).isNotEqualTo(cacheableService.getValue("next"))
+    assertThat(realValue).isNotEqualTo(cacheService.getValue("next"))
   }
 }

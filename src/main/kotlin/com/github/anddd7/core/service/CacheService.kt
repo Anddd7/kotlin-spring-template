@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import kotlin.random.Random
 
 @Service
-class CacheableService {
+class CacheService {
 
   private val logger = LoggerFactory.getLogger(this.javaClass)
 

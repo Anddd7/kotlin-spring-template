@@ -1,5 +1,6 @@
-package com.github.anddd7.security
+package com.github.anddd7.security.filter
 
+import com.github.anddd7.security.config.JWTConfig
 import com.github.anddd7.security.model.AuthPermission
 import com.github.anddd7.security.model.AuthRole
 import com.github.anddd7.security.model.AuthUserPrincipal

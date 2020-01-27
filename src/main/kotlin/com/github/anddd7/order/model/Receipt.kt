@@ -17,14 +17,6 @@ class ReceiptMapper : ModelMapper<ReceiptDTO, Receipt, ReceiptDAO> {
     ReceiptDTO(itemNumber, totalPrice)
   }
 
-  override fun toDAO(model: Receipt): ReceiptDAO {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
-
-  override fun fromDTO(dto: ReceiptDTO): Receipt {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
-
   override fun fromDAO(dao: ReceiptDAO) = dao.run {
     Receipt(id, itemNumber, totalPrice)
   }

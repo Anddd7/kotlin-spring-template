@@ -1,4 +1,4 @@
-package com.github.anddd7.security
+package com.github.anddd7.security.service
 
 import java.security.Key
 import java.security.KeyFactory

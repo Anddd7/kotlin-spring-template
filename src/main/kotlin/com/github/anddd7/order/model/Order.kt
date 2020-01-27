@@ -24,14 +24,6 @@ class OrderMapper(
     )
   }
 
-  override fun toDAO(model: Order): OrderDAO {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
-
-  override fun fromDTO(dto: OrderDTO): Order {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
-
   override fun fromDAO(dao: OrderDAO) = dao.run {
     Order(
         id = id,

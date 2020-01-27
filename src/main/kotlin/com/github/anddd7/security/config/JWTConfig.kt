@@ -1,4 +1,6 @@
-package com.github.anddd7.security
+package com.github.anddd7.security.config
+
+import com.github.anddd7.security.service.RSAKeyPairProvider
 
 class JWTConfig(
     privateKeyString: String = "",

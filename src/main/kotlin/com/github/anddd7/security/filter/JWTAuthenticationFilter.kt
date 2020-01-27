@@ -1,7 +1,8 @@
-package com.github.anddd7.security
+package com.github.anddd7.security.filter
 
 import com.github.anddd7.core.configuration.JsonUtil
 import com.github.anddd7.security.api.dto.toAuthenticatedUser
+import com.github.anddd7.security.config.JWTConfig
 import com.github.anddd7.security.model.AuthUserPrincipal
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm

@@ -1,7 +1,6 @@
-package com.github.anddd7.core
+package com.github.anddd7.core.api
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.anddd7.core.api.TempController
 import com.github.anddd7.core.service.TempService
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
