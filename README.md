@@ -100,6 +100,6 @@ docker run -p 8080:8080 <environment> kotlin-spring
 - [x] jacoco, ~~ktlint,~~ detekt
   - [x] detekt include most of features of ktlint, idea also provides good lint.
 - [x] exception, http status, handler
-- [ ] contract testing with wiremock
+~~- [ ] contract testing with wiremock~~
 - [x] model mapping
 - [x] split api test
