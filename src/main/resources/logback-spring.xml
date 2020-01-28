@@ -1,3 +1,4 @@
+
 <configuration>
   <include resource="included-console.xml"/>
   <include resource="included-elk.xml"/>
@@ -6,16 +7,23 @@
     <logger level="DEBUG" name="com.github.anddd7"/>
     <logger level="DEBUG" name="org.springframework.web.filter.CommonsRequestLoggingFilter"/>
 
-    <logger level="INFO" name="org.hibernate.SQL"/>
-    <logger level="INFO" name="org.hibernate.type.descriptor.sql.BasicBinder"/>
-
-    <root level="INFO">
+    <root level="DEBUG">"
       <appender-ref ref="STDOUT"/>
     </root>
   </springProfile>
 
   <springProfile name="dev">
-    <root level="INFO">
+    <logger level="DEBUG" name="com.github.anddd7.service"/>
+
+    <root level="INFO">"
+      <appender-ref ref="STDOUT"/>
+    </root>
+  </springProfile>
+
+  <springProfile name="deploy">
+    <logger level="DEBUG" name="com.github.anddd7.service"/>
+
+    <root level="INFO">"
       <appender-ref ref="ELK"/>
     </root>
   </springProfile>
