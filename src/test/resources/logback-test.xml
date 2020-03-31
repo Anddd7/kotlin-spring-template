@@ -1,5 +1,5 @@
 <configuration>
-  <include resource="included-console.xml"/>
+  <include resource="logback/console.xml"/>
 
   <logger level="DEBUG" name="com.github.anddd7"/>
   <logger level="INFO" name="org.hibernate.SQL"/>
