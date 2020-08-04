@@ -1,7 +1,7 @@
 <configuration>
   <include resource="logback/console.xml"/>
   <include resource="logback/logstash-event.xml"/>
-  <include resource="logback/logstash-event-tcp.xml"/>
+<!--  <include resource="logback/logstash-event-tcp.xml"/>-->
 
   <springProfile name="local,test">
     <logger level="DEBUG" name="com.github.anddd7"/>

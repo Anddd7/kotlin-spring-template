@@ -30,9 +30,17 @@ class TempController(val tempService: TempService) {
 
   @GetMapping("/ping")
   fun ping() = mapOf(
-      "version" to version(),
-      "active" to "ok"
+    "version" to version(),
+    "active" to "ok"
   )
+
+  @GetMapping("/gc")
+  fun gc() {
+    System.gc()
+  }
+
+  @GetMapping("/inflation")
+  fun inflation() = ByteArray(1024 * 1024 * 100)
 
   /**
    * Required request parameter will always be checked, in `MethodValidationInterceptor`
@@ -42,7 +50,7 @@ class TempController(val tempService: TempService) {
    */
   @PostMapping("/validate")
   fun validate(
-      @RequestParam @NotBlank correlationId: String,
+    @RequestParam @NotBlank correlationId: String,
       @RequestParam @NotEmpty @Size(max = 5) operations: List<String>,
       @RequestBody @Valid request: ValidateRequest
   ) = request

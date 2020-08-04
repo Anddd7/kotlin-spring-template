@@ -71,9 +71,6 @@ idea {
     jdkName = "11"
   }
   module {
-    outputDir = file("$buildDir/idea-compiler/main")
-    testOutputDir = file("$buildDir/idea-compiler/test")
-
     apiSourceSet.withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
       testSourceDirs = testSourceDirs + kotlin.srcDirs
       testResourceDirs = testResourceDirs + resources.srcDirs
@@ -112,9 +109,13 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   /* kotlin test */
-  testImplementation("org.junit.jupiter:junit-jupiter-engine")
+  testImplementation("org.junit.jupiter:junit-jupiter-api")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-params")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+
   testImplementation("io.mockk:mockk:1.9.3")
   testImplementation("org.assertj:assertj-core:3.15.0")
+
   /* kotlin coroutines */
 //  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 //  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8")

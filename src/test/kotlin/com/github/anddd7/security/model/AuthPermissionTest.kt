@@ -2,6 +2,7 @@ package com.github.anddd7.security.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.springframework.security.core.context.SecurityContextHolder
 
 internal class AuthPermissionTest {
 
