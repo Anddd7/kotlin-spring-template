@@ -1,11 +1,14 @@
 <configuration>
-  <include resource="logback/console.xml"/>
+    <include resource="logback/console.xml"/>
 
-  <logger level="DEBUG" name="com.github.anddd7"/>
-  <logger level="INFO" name="org.hibernate.SQL"/>
-  <logger level="INFO" name="org.hibernate.type.descriptor.sql.BasicBinder"/>
+    <logger level="DEBUG" name="com.github.anddd7"/>
+    <logger level="INFO" name="org.hibernate.SQL"/>
+    <logger level="INFO" name="org.hibernate.type.descriptor.sql.BasicBinder"/>
 
-  <root level="INFO">
-    <appender-ref ref="STDOUT"/>
-  </root>
+    <logger level="DEBUG" name="org.hibernate.transaction"/>
+    <logger level="DEBUG" name="org.springframework.transaction"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
 </configuration>
