@@ -5,8 +5,9 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
@@ -35,6 +36,11 @@ class TransactionalTest {
     @Autowired
     private lateinit var part3Repository: Part3Repository
 
+    @BeforeEach
+    internal fun setUp() {
+        every { et.isCoroutine() } returns false
+    }
+
     @AfterEach
     internal fun tearDown() {
         hubRepository.deleteAll()
@@ -58,7 +64,11 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(hub1, hub2))
+        assertThat(models).isEqualTo(listOf(hub1, hub2))
+        assertThat(hubRepository.count()).isEqualTo(2)
+        assertThat(part1Repository.count()).isEqualTo(2)
+        assertThat(part2Repository.count()).isEqualTo(2)
+        assertThat(part3Repository.count()).isEqualTo(2)
     }
 
     @Test
@@ -87,11 +97,13 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(updatedHub1, updatedHub2))
+        assertThat(models).isEqualTo(listOf(updatedHub1, updatedHub2))
+        assertThat(hubRepository.count()).isEqualTo(2)
+        assertThat(part1Repository.count()).isEqualTo(2)
+        assertThat(part2Repository.count()).isEqualTo(2)
+        assertThat(part3Repository.count()).isEqualTo(2)
     }
 
-    //    @Nested
-//    inner class CreateFailed {
     @Test
     fun `create failed after saved part1`() {
         noEx()
@@ -106,7 +118,11 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(success))
+        assertThat(models).isEqualTo(listOf(success))
+        assertThat(hubRepository.count()).isEqualTo(1)
+        assertThat(part1Repository.count()).isEqualTo(1)
+        assertThat(part2Repository.count()).isEqualTo(1)
+        assertThat(part3Repository.count()).isEqualTo(1)
     }
 
     @Test
@@ -123,7 +139,11 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(success))
+        assertThat(models).isEqualTo(listOf(success))
+        assertThat(hubRepository.count()).isEqualTo(1)
+        assertThat(part1Repository.count()).isEqualTo(1)
+        assertThat(part2Repository.count()).isEqualTo(1)
+        assertThat(part3Repository.count()).isEqualTo(1)
     }
 
     @Test
@@ -140,7 +160,11 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(success))
+        assertThat(models).isEqualTo(listOf(success))
+        assertThat(hubRepository.count()).isEqualTo(1)
+        assertThat(part1Repository.count()).isEqualTo(1)
+        assertThat(part2Repository.count()).isEqualTo(1)
+        assertThat(part3Repository.count()).isEqualTo(1)
     }
 
     @Test
@@ -157,13 +181,13 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(success))
+        assertThat(models).isEqualTo(listOf(success))
+        assertThat(hubRepository.count()).isEqualTo(1)
+        assertThat(part1Repository.count()).isEqualTo(1)
+        assertThat(part2Repository.count()).isEqualTo(1)
+        assertThat(part3Repository.count()).isEqualTo(1)
     }
 
-    //    }
-//
-//    @Nested
-//    inner class UpdateFailed {
     @Test
     fun `update failed after saved part1`() {
         noEx()
@@ -185,7 +209,10 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(hub))
+        assertThat(models).isEqualTo(listOf(hub))
+        assertThat(part1Repository.getOne(hub.part1.id).name).doesNotStartWith("updated")
+        assertThat(part2Repository.getOne(hub.part2.id).name).doesNotStartWith("updated")
+        assertThat(part3Repository.getOne(hub.part3.id).name).doesNotStartWith("updated")
     }
 
     @Test
@@ -209,7 +236,10 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(hub))
+        assertThat(models).isEqualTo(listOf(hub))
+        assertThat(part1Repository.getOne(hub.part1.id).name).doesNotStartWith("updated")
+        assertThat(part2Repository.getOne(hub.part2.id).name).doesNotStartWith("updated")
+        assertThat(part3Repository.getOne(hub.part3.id).name).doesNotStartWith("updated")
     }
 
     @Test
@@ -233,7 +263,9 @@ class TransactionalTest {
 
         val models = hubService.findAll()
 
-        Assertions.assertThat(models).isEqualTo(listOf(hub))
+        assertThat(models).isEqualTo(listOf(hub))
+        assertThat(part1Repository.getOne(hub.part1.id).name).doesNotStartWith("updated")
+        assertThat(part2Repository.getOne(hub.part2.id).name).doesNotStartWith("updated")
+        assertThat(part3Repository.getOne(hub.part3.id).name).doesNotStartWith("updated")
     }
-//    }
 }
