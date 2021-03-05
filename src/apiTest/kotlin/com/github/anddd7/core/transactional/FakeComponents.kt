@@ -9,28 +9,40 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import javax.persistence.*
 
+
+@Component
+class ExceptionTrigger {
+    fun isTriggeredAt1(part1: Part1) {}
+    fun isTriggeredAt2(part2: Part2) {}
+    fun isTriggeredAt3(part3: Part3) {}
+    fun isTriggeredAt4(hub: HubPO) {}
+}
+
 @Service
 class HubService(
     private val repository: HubRepository,
     private val part1Dao: Part1Dao,
     private val part2Dao: Part2Dao,
     private val part3Dao: Part3Dao,
+    private val et: ExceptionTrigger
 ) {
     @Transactional
     fun create(name1: String, name2: String, name3: String): HubModel {
-        val part1 = part1Dao.save(Part1(name = name1))
-        val part2 = part2Dao.save(Part2(name = name2))
-        val part3 = part3Dao.save(Part3(name = name3))
+        val part1 = part1Dao.save(Part1(name = name1)).also(et::isTriggeredAt1)
+        val part2 = part2Dao.save(Part2(name = name2)).also(et::isTriggeredAt2)
+        val part3 = part3Dao.save(Part3(name = name3)).also(et::isTriggeredAt3)
 
         val entity = repository.save(HubPO(id = 0, part1 = part1.id, part2 = part2.id, part3 = part3.id))
+            .also(et::isTriggeredAt4)
+
         return HubModel(entity.id, part1, part2, part3)
     }
 
     @Transactional
     fun update(hub: HubModel): HubModel {
-        val part1 = part1Dao.save(hub.part1)
-        val part2 = part2Dao.save(hub.part2)
-        val part3 = part3Dao.save(hub.part3)
+        val part1 = part1Dao.save(hub.part1).also(et::isTriggeredAt1)
+        val part2 = part2Dao.save(hub.part2).also(et::isTriggeredAt2)
+        val part3 = part3Dao.save(hub.part3).also(et::isTriggeredAt3)
 
         return HubModel(hub.id, part1, part2, part3)
     }
