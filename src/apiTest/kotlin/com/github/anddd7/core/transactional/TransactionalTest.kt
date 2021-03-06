@@ -38,6 +38,9 @@ class TransactionalTest {
 
     @BeforeEach
     internal fun setUp() {
+        // test coroutine
+        every { et.isCoroutine() } returns true
+        // test sequence
         every { et.isCoroutine() } returns false
     }
 
