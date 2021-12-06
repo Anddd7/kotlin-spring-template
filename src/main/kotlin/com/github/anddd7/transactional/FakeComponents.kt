@@ -1,4 +1,4 @@
-package com.github.anddd7.core.transactional
+package com.github.anddd7.transactional
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators

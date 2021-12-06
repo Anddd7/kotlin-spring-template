@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-@AutoConfigureEmbeddedDatabase(provider = AutoConfigureEmbeddedDatabase.DatabaseProvider.DOCKER)
+@AutoConfigureEmbeddedDatabase
 class AuthorizationApiTest {
   @Autowired
   private lateinit var mvc: MockMvc

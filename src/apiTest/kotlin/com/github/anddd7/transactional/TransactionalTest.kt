@@ -1,4 +1,4 @@
-package com.github.anddd7.core.transactional
+package com.github.anddd7.transactional
 
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.Runs
