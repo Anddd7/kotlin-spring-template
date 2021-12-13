@@ -25,7 +25,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 // import plugins into this project
 plugins {
-  val kotlinVersion = "1.4.21"
+  val kotlinVersion = "1.6.0"
 
   // core plugins, which is already include in plugin dependencies spec
   idea
@@ -40,7 +40,7 @@ plugins {
    * binary(external) plugins, provide id and version to resolve it
    * base plugin for spring-boot, provide plugins and tasks
    */
-  id("org.springframework.boot") version "2.4.2"
+  id("org.springframework.boot") version "2.6.1"
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
   id("org.flywaydb.flyway") version "7.5.2"
@@ -93,6 +93,12 @@ jacoco {
   toolVersion = "0.8.6"
 }
 
+allOpen {
+  annotation("javax.persistence.Entity")
+  annotation("javax.persistence.Embeddable")
+  annotation("javax.persistence.MappedSuperclass")
+}
+
 /** -------------- dependencies management -------------- */
 
 dependencies {
@@ -107,8 +113,8 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   /* kotlin test */
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-  testImplementation("io.mockk:mockk:1.10.5")
-  testImplementation("org.assertj:assertj-core:3.19.0")
+  testImplementation("io.mockk:mockk:1.12.1")
+  testImplementation("org.assertj:assertj-core:3.21.0")
 
   /* kotlin coroutines */
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
@@ -132,16 +138,16 @@ dependencies {
 
   /* monitoring x logging */
   implementation("org.springframework.boot:spring-boot-starter-actuator")
-  implementation("net.logstash.logback:logstash-logback-encoder:6.6")
+  implementation("net.logstash.logback:logstash-logback-encoder:7.0")
 
   /* jsr107 cache */
   implementation("org.springframework.boot:spring-boot-starter-cache")
   implementation("javax.cache:cache-api")
   implementation("org.ehcache:ehcache")
 
-  /* swagger */
-  implementation("io.springfox:springfox-swagger2:3.0.0")
-  runtimeOnly("io.springfox:springfox-swagger-ui:3.0.0")
+  /* openApi && swagger */
+  implementation("org.springdoc:springdoc-openapi-ui:1.5.13")
+  implementation("org.springdoc:springdoc-openapi-kotlin:1.5.13")
 
   /* db */
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -150,16 +156,16 @@ dependencies {
   runtimeOnly("org.postgresql:postgresql")
 
   /* mock db x server */
-  testImplementation("io.zonky.test:embedded-database-spring-test:1.6.2")
-  testRuntimeOnly("org.testcontainers:postgresql:1.12.4")
+  testImplementation("io.zonky.test:embedded-database-spring-test:2.1.1")
+  testRuntimeOnly("org.testcontainers:postgresql:1.16.2")
   testImplementation("com.github.tomakehurst:wiremock:2.27.2")
 
   /* architecture verification */
-  testImplementation("com.tngtech.archunit:archunit-junit5-api:0.16.0")
-  testRuntimeOnly("com.tngtech.archunit:archunit-junit5-engine:0.16.0")
+  testImplementation("com.tngtech.archunit:archunit-junit5-api:0.22.0")
+  testRuntimeOnly("com.tngtech.archunit:archunit-junit5-engine:0.22.0")
 
   /* utils */
-  implementation("com.google.guava:guava:28.1-jre")
+  implementation("com.google.guava:guava:31.0-jre")
 }
 
 /** -------------- configure tasks -------------- */
