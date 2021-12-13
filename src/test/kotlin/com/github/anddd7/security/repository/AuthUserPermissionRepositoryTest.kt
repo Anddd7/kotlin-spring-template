@@ -20,17 +20,17 @@ internal class AuthUserPermissionRepositoryTest {
 
   @Test
   fun `should return whether role have the permission`() {
-    val user2 = authUserRepository.getOne(2)
-    assertThat(user2.permissions.any { it.belong(PermissionCode.DASHBOARD) }).isTrue()
-    assertThat(user2.permissions.any { it.belong(PermissionCode.ORDER) }).isFalse()
+    val user2 = authUserRepository.getById(2)
+    assertThat(user2.getPermissions().any { it.belong(PermissionCode.DASHBOARD) }).isTrue()
+    assertThat(user2.getPermissions().any { it.belong(PermissionCode.ORDER) }).isFalse()
 
-    val user3 = authUserRepository.getOne(3)
-    assertThat(user3.permissions.any { it.belong(PermissionCode.DASHBOARD) }).isTrue()
-    assertThat(user3.permissions.any { it.belong(PermissionCode.ORDER) }).isFalse()
+    val user3 = authUserRepository.getById(3)
+    assertThat(user3.getPermissions().any { it.belong(PermissionCode.DASHBOARD) }).isTrue()
+    assertThat(user3.getPermissions().any { it.belong(PermissionCode.ORDER) }).isFalse()
 
-    val user4 = authUserRepository.getOne(4)
-    assertThat(user4.permissions.any { it.belong(PermissionCode.DASHBOARD) }).isTrue()
-    assertThat(user4.permissions.any { it.belong(PermissionCode.ORDER) }).isTrue()
+    val user4 = authUserRepository.getById(4)
+    assertThat(user4.getPermissions().any { it.belong(PermissionCode.DASHBOARD) }).isTrue()
+    assertThat(user4.getPermissions().any { it.belong(PermissionCode.ORDER) }).isTrue()
   }
 
   @Autowired
@@ -38,11 +38,11 @@ internal class AuthUserPermissionRepositoryTest {
 
   @Test
   fun `should allowed users of the permission`() {
-    val dashboard = authPermissionRepository.getOne(PermissionCode.DASHBOARD.name)
+    val dashboard = authPermissionRepository.getById(PermissionCode.DASHBOARD.name)
     assertThat(dashboard.roles).hasSize(3)
     assertThat(dashboard.users).hasSize(4)
 
-    val order = authPermissionRepository.getOne(PermissionCode.ORDER.name)
+    val order = authPermissionRepository.getById(PermissionCode.ORDER.name)
     assertThat(order.roles).hasSize(1)
     assertThat(order.users).hasSize(1)
   }
