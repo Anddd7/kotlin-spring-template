@@ -25,7 +25,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 // import plugins into this project
 plugins {
-  val kotlinVersion = "1.6.0"
+  val kotlinVersion = "1.6.10"
 
   // core plugins, which is already include in plugin dependencies spec
   idea
@@ -40,14 +40,14 @@ plugins {
    * binary(external) plugins, provide id and version to resolve it
    * base plugin for spring-boot, provide plugins and tasks
    */
-  id("org.springframework.boot") version "2.6.1"
+  id("org.springframework.boot") version "2.6.3"
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
   id("org.flywaydb.flyway") version "7.5.2"
 
-  id("io.gitlab.arturbosch.detekt") version "1.16.0-RC1"
+  id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 
-  id("org.owasp.dependencycheck") version "6.1.0"
+  id("org.owasp.dependencycheck") version "6.1.6"
 }
 
 /** -------------- configure imported plugin -------------- */
@@ -83,14 +83,8 @@ flyway {
   url = "jdbc:postgresql://localhost:5432/local?user=test&password=test"
 }
 
-detekt {
-//  failFast = true
-  toolVersion = "1.16.0-RC1"
-  input = files("src/main/kotlin")
-}
-
 jacoco {
-  toolVersion = "0.8.6"
+  toolVersion = "0.8.7"
 }
 
 allOpen {
@@ -113,7 +107,7 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   /* kotlin test */
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-  testImplementation("io.mockk:mockk:1.12.1")
+  testImplementation("io.mockk:mockk:1.12.2")
   testImplementation("org.assertj:assertj-core:3.21.0")
 
   /* kotlin coroutines */
@@ -130,7 +124,7 @@ dependencies {
     exclude(group = "org.mockito")
     exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
   }
-  testImplementation("com.ninja-squad:springmockk:3.0.1")
+  testImplementation("com.ninja-squad:springmockk:3.1.0")
   /* security */
   implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("io.jsonwebtoken:jjwt:0.9.1")
@@ -187,11 +181,6 @@ tasks.withType<KotlinCompile>().all {
 
 tasks.withType<Test> {
   useJUnitPlatform()
-}
-
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-  // include("**/special/package/**") // only analyze a sub package inside src/main/kotlin
-  // exclude("**/special/package/internal/**") // but exclude our legacy internal package
 }
 
 task("newMigration") {

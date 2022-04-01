@@ -1,7 +1,7 @@
 version: "3"
 services:
   postgres:
-    image: postgres:alpine
+    image: postgres:latest
     environment:
       POSTGRES_DB: local
       POSTGRES_USER: test
